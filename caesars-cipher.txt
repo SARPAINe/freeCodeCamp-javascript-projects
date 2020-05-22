@@ -1,0 +1,23 @@
+function rot13(str) {
+  var ans="";
+  for(var i=0;i<str.length;i++)
+  {
+    //console.log(str.charCodeAt(i));
+    if(str.charCodeAt(i)>64 && str.charCodeAt(i)<91)
+    {
+      var num;
+    if((str.charCodeAt(i)+13)>90)
+    num=str.charCodeAt(i)+13-26;
+    else
+    num=str.charCodeAt(i)+13;
+    ans+=String.fromCharCode(num);
+    }
+    else
+    ans+=str[i];
+    
+  }
+  return ans;
+}
+
+console.log(rot13("GUR DHVPX OEBJA SBK WHZCF BIRE GUR YNML QBT."));
+

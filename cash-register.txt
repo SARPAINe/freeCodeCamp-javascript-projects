@@ -1,0 +1,106 @@
+function checkCashRegister(price, cash, cid) {
+  var change;
+  change=cash-price;
+  console.log(change);
+  var tmp=0;
+  for(var i=8;i>=0;i--)
+  {
+    tmp+=cid[i][1];
+    
+  }
+  var cidt=cid;
+  var num=[0.01,0.05,0.1,0.25,1,5,10,20,100];
+  // console.log(cidt);
+  var ans={};
+  console.log(tmp);
+  if(tmp===change)
+  {
+    ans.status="CLOSED";
+    ans.change=cid;
+    return ans;
+  }
+  else if(tmp<change)
+  {
+    ans.status="INSUFFICIENT_FUNDS";
+    ans.change=[];
+    return ans;
+  }
+  else{
+    tmp=0.0;
+    ans.change=[];
+    var chang=change;
+     for(var i=8;i>=0;i--)
+    {
+      
+      if(change>=num[i])
+      {
+        var remNumOfNote=cidt[i][1]/num[i];
+        
+        console.log("cidt[i][1]:"+cidt[i][1]);
+        console.log("remainign number of note: "+remNumOfNote);
+        if(cidt[i][1]>chang)
+        {
+          var t=0;
+          var cp=0;
+          while((tmp+num[i]).toFixed(2)<=change)
+          {
+            t=1;
+              tmp+=num[i];
+              cp+=num[i];
+              if(i===0)
+              {
+                console.log("fuck:"+tmp);
+              }
+          }
+         
+          // tmp.toFixed(2);
+          // console.log("fuck:"+tmp);
+          if(t==1)
+          ans.change.push([cid[i][0],cp]);
+        }
+        else if(cidt[i][1]<=chang)
+        {
+          tmp+=cidt[i][1];
+          tmp.toFixed(2);
+          console.log("tmp:"+tmp);
+           ans.change.push([cidt[i][0],cidt[i][1]]);
+        }
+        // change-=tmp;
+         
+
+      }
+       console.log("change:"+change);
+       console.log("tmp:"+tmp);
+      chang=(change.toFixed(2)-tmp.toFixed(2)).toFixed(2);
+      console.log("chang:"+chang);
+
+      console.log("final: "+tmp.toFixed(2));
+      if(tmp.toFixed(2)==change)
+      {
+        ans.status="OPEN";
+        return ans;
+      }
+      else if(tmp>=change)
+      {
+        ans.status="INSUFFICIENT_FUNDS";
+        ans.change=[];
+        return ans;
+      }
+       
+      
+      
+    }
+    // console.log("tmp: "+tmp);
+     if(tmp<change)
+      {
+        ans.status="INSUFFICIENT_FUNDS";
+        ans.change=[];
+        return ans;
+      }
+  }
+  
+
+  // return change;
+}
+
+console.log(checkCashRegister(19.5, 20, [["PENNY", 1.01], ["NICKEL", 2.05], ["DIME", 3.1], ["QUARTER", 4.25], ["ONE", 90], ["FIVE", 55], ["TEN", 20], ["TWENTY", 60], ["ONE HUNDRED", 100]]));

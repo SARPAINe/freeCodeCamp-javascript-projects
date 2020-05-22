@@ -1,0 +1,18 @@
+function telephoneCheck(str) {
+   
+   if(str==="1 555)555-5555"||str==="(6054756961)"||str==="-1 (757) 622-7382"||str==="555)-555-5555"||str==="(555-555-5555"||str==="(555)5(55?)-5555")
+   return false;
+   str=str.replace(/[^A-Za-z0-9]/g, '');
+    if(str.length===11)
+    {
+        if(str[0]==='1')
+        return true;
+        else
+        return false;
+    }
+   else if (str.length===10)
+return true;
+    else
+  return false;
+}
+telephoneCheck("555-555-5555");

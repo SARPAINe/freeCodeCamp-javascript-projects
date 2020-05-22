@@ -1,0 +1,15 @@
+function palindrome(str) {
+  str=str.replace(/[^A-Za-z0-9]/g, '');
+  str=str.toLowerCase();
+  var arr1=str.split("");
+  arr1=arr1.reverse();
+  var str2=arr1.join("");
+  if(str===str2)
+  return true;
+  else
+  return false;
+}
+
+
+
+palindrome("_Eye");
